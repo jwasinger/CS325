@@ -1,4 +1,0 @@
-
-def enumeration(array):
-
-	return 
