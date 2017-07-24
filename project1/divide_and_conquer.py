@@ -1,17 +1,22 @@
 #!/usr/bin/python3
 
-#--------------------------------------------------------------------
-# Function: enumer_d_and_c
-# Description: Computes the maximum sub-array and the associated sum using a div#    ide and conquer algorithm
-# Receives: values - list of integers
-# Returns: maximum sub-array sum, and maximum sub-array
-# Preconditions: "values constains at least one positive integer
-#--------------------------------------------------------------------
+# Enumeration
+# BY : Dennie Devito, Jared Gregory Wasinger, Rohan Milind Barve 
+# CS 325 // Summer 2017 
+# Function: enumeration
 
-# Importing argv to allow the method to be used as a CL utility
+#---------------------------------------------------------------------------------------------------------------------------------
+# Algorithm 3 Instruction : If we split the array into two halves, we know that the maximum subarray will either be
+#                           -  Contained entirely in the first half
+#                           -  Contained entirely in the second half or
+#                           -  Made of a suffix of the first half of the subarray and a prefix of the second half
+#---------------------------------------------------------------------------------------------------------------------------------
+
+# Returns: maximum sub-array sum, and maximum sub-array
+
 from sys import argv
 
-def enumer_d_and_c(values):
+def div_and_conq(values):
     # Checking if the values array is either empty or only contains
     # a single element
     if len(values) == 0:
@@ -60,8 +65,8 @@ def enumer_d_and_c(values):
 
     # Recursively calling the main method to act on the left and 
     # right halves of the values array
-    leftmax, leftsubarr = enumer_d_and_c(values[:midpoint])
-    rightmax, rightsubarr = enumer_d_and_c(values[midpoint:])
+    leftmax, leftsubarr = div_and_conq(values[:midpoint])
+    rightmax, rightsubarr = div_and_conq(values[midpoint:])
 
     # If-else block used to determine the biggest subarray max
     # and to return that max with the subarray it reflects
@@ -77,6 +82,6 @@ if __name__=="__main__":
     with open('MSS_TestProblems-1.txt') as f:
         for line in f:
             int_list = [int(i) for i in line.split()]
-            max_sum,values =enumer_d_and_c(int_list)
+            max_sum,values =div_and_conq(int_list)
             insert.write("%s\n" % values)
             insert.write("%s\n" % max_sum)
